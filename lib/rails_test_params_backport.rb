@@ -3,7 +3,7 @@ require 'active_support'
 require 'action_dispatch'
 
 module RailsTestParamsBackport
-  ERROR_MESSAGE = <<-EOS
+  ERROR_MESSAGE = <<-EOS.gsub(/^ {4}/, '')
     Test HTTP request methods will accept only
     the following keyword arguments in future Rails versions:
     params, headers, env
