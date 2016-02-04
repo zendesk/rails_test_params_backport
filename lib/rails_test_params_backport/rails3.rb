@@ -1,5 +1,5 @@
 module RailsTestParamsBackport
-  module TestCaseParamsBackport
+  module TestCase
     def process(action, parameters = nil, session = nil, flash = nil, http_method = 'GET')
       parameters = parameters.to_h
 
@@ -13,7 +13,7 @@ module RailsTestParamsBackport
     end
   end
 
-  module IntegrationSessionParamsBackport
+  module IntegrationSession
     def process(method, path, parameters = nil, rack_env = nil)
       parameters = parameters.to_h
 
