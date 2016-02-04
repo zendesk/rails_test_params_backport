@@ -1,0 +1,4 @@
+gem 'rails',     '~> 3.2.22'
+gem 'test-unit', '~> 3.0'
+
+eval_gemfile('gemfiles/common.rb')
