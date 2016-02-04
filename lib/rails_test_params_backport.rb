@@ -18,7 +18,7 @@ module RailsTestParamsBackport
   class << self
     def verify_parameters(parameters)
       offensive_parameters = parameters.keys - %i(params headers env)
-      return unless offensive_parameters.any?
+      return if offensive_parameters.none?
       raise RailsTestParamsBackport::ParameterError, ERROR_MESSAGE
     end
   end
