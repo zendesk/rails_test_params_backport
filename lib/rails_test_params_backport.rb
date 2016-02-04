@@ -16,8 +16,6 @@ module RailsTestParamsBackport
   EOS
 
   class << self
-    attr_accessor :raise_on_offence
-
     def verify_parameters(parameters)
       offensive_parameters = parameters.keys - %i(params headers env)
       return unless offensive_parameters.any?
