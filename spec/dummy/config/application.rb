@@ -9,5 +9,8 @@ Bundler.require(*Rails.groups)
 module Dummy
   class Application < Rails::Application
     config.eager_load = true
+    config.action_dispatch.show_exceptions = false
+    config.active_support.test_order = :random
+    config.active_support.deprecation = :raise
   end
 end
