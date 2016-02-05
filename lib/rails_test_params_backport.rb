@@ -30,5 +30,7 @@ end
 require 'rails_test_params_backport/rails3' if ActiveSupport::VERSION::MAJOR == 3
 require 'rails_test_params_backport/rails4' if ActiveSupport::VERSION::MAJOR == 4
 
+ActionController::TestCase.prepend(RailsTestParamsBackport::TestCase)
 ActionController::TestCase::Behavior.prepend(RailsTestParamsBackport::TestCase)
+
 ActionDispatch::Integration::Session.prepend(RailsTestParamsBackport::IntegrationSession)
