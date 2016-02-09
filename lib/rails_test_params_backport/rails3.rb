@@ -3,7 +3,9 @@ module RailsTestParamsBackport
     def process(action, parameters = nil, session = nil, flash = nil, http_method = 'GET')
       parameters = parameters.to_h
 
-      RailsTestParamsBackport.verify_parameters(parameters)
+      if RailsTestParamsBackport.offensive_parameters?(parameters) || session || flash
+        raise(ParameterError, ERROR_MESSAGE)
+      end
 
       headers = parameters.fetch(:headers, {})
       env = parameters.fetch(:env, {})
@@ -17,7 +19,9 @@ module RailsTestParamsBackport
     def process(method, path, parameters = nil, rack_env = nil)
       parameters = parameters.to_h
 
-      RailsTestParamsBackport.verify_parameters(parameters)
+      if RailsTestParamsBackport.offensive_parameters?(parameters) || rack_env
+        raise(ParameterError, ERROR_MESSAGE)
+      end
 
       headers = parameters.fetch(:headers, {})
       env = parameters.fetch(:env, {})
