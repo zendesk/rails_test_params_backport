@@ -4,6 +4,12 @@ class HomeController < ApplicationController
   end
 
   def headers
-    render text: "session[:accept] = #{session['HTTP_ACCEPT']}"
+    render text: "session[:accept] = #{accept_header}"
+  end
+
+  private
+
+  def accept_header
+    request.accept || session['HTTP_ACCEPT']
   end
 end
