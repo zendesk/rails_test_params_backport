@@ -24,5 +24,11 @@ describe HomeController, type: :controller do
         get :index, wrong: true
       }.to raise_error(RailsTestParamsBackport::ParameterError)
     end
+
+    it 'raises when headers are sent in a separate hash' do
+      expect {
+        get :index, {}, { 'HTTP_ACCEPT' => 'text/plain' }
+      }.to raise_error(RailsTestParamsBackport::ParameterError)
+    end
   end
 end
