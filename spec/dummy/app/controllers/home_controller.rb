@@ -1,10 +1,6 @@
 class HomeController < ApplicationController
   def index
-    render text: "params[:text] = #{params[:text]}"
-  end
-
-  def headers
-    render text: "session[:accept] = #{accept_header}"
+    render text: "Text: #{params[:text]} - Accept: #{accept_header}"
   end
 
   private

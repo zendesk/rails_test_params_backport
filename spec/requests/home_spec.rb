@@ -6,15 +6,15 @@ describe "integration", type: :request do
       get "/home", params: { text: 'Hello World!' }
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq('params[:text] = Hello World!')
+      expect(response.body).to include('Text: Hello World!')
     end
 
   describe 'headers'
     it 'accepts headers' do
-      get "/home/headers", headers: { 'HTTP_ACCEPT' => 'text/plain' }
+      get "/home", headers: { 'HTTP_ACCEPT' => 'text/plain' }
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq('session[:accept] = text/plain')
+      expect(response.body).to include('Accept: text/plain')
     end
   end
 
