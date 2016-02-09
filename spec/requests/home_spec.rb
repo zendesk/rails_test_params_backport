@@ -24,5 +24,11 @@ describe "integration", type: :request do
         get "/home", wrong: true
       }.to raise_error(RailsTestParamsBackport::ParameterError)
     end
+
+    it 'raises when headers are sent in a separate hash' do
+      expect {
+        get "/home", {}, { 'HTTP_ACCEPT' => 'text/plain' }
+      }.to raise_error(RailsTestParamsBackport::ParameterError)
+    end
   end
 end

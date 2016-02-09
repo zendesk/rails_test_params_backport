@@ -3,6 +3,8 @@ require 'active_support'
 require 'action_dispatch'
 
 module RailsTestParamsBackport
+  ParameterError = Class.new(RuntimeError)
+
   ERROR_MESSAGE = <<-EOS.gsub(/^ {4}/, '')
     Test HTTP request methods will accept only
     the following keyword arguments in future Rails versions:
@@ -16,14 +18,10 @@ module RailsTestParamsBackport
   EOS
 
   class << self
-    def verify_parameters(parameters)
+    def offensive_parameters?(parameters)
       offensive_parameters = parameters.keys - %i(params headers env)
-      return if offensive_parameters.none?
-      raise RailsTestParamsBackport::ParameterError, ERROR_MESSAGE
+      offensive_parameters.any?
     end
-  end
-
-  class ParameterError < RuntimeError
   end
 end
 
