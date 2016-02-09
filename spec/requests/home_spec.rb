@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe "integration", type: :request do
+  it 'accepts the path alone' do
+    get "/home"
+
+    expect(response).to have_http_status(:ok)
+  end
+
   it 'accepts :params' do
     get "/home", params: { text: 'Hello World!' }
 

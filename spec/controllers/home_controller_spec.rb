@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe HomeController, type: :controller do
+  it 'accepts the path alone' do
+    get :index
+
+    expect(response).to have_http_status(:ok)
+  end
+
   it 'accepts :params' do
     get :index, params: { text: 'Hello World!' }
 
